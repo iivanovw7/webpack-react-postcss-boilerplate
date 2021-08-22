@@ -1,0 +1,24 @@
+@charset "UTF-8";
+@import './_colors.pcss';
+
+@font-face {
+    font-weight: $regular;
+    font-family: $fontFamily;
+    src: local($fontLocal), url(../fonts/Nunito-SemiBold.ttf) format('truetype');
+    src: url(https://fonts.googleapis.com/css?family=Nunito:600,800&display=swap);
+    font-display: swap;
+}
+
+@font-face {
+    font-weight: $bold;
+    font-family: $fontFamily;
+    src: local($fontLocal), url(../fonts/Nunito-ExtraBold.ttf) format('truetype');
+    src: url(https://fonts.googleapis.com/css?family=Nunito:600,800&display=swap);
+    font-display: swap;
+}
+
+/* Applying main application font. */
+html {
+    font-weight: $regular;
+    font-family: $fontFamily;
+}

@@ -1,0 +1,122 @@
+:root {
+    /* Base color palette https://materialuicolors.co */
+    --black: #000;
+    --blue-grey-200: #b0bec5;
+    --indigo-200: #9fa8da;
+    --indigo-300: #7986cb;
+    --indigo-400: #5c6bc0;
+    --indigo-500: #3f51b5;
+    --indigo-600: #3949ab;
+    --indigo-700: #303f9f;
+    --indigo-900: #1a237e;
+    --indigo-A400: #304ffe;
+    --indigo-A700: #304ffe;
+    --light-blue-100: #b3e5fc;
+    --light-blue-200: #81d4fa;
+    --lime-200: #e6ee9c;
+    --lime-300: #dce775;
+    --lime-400: #d4e157;
+    --lime-500: #cddc39;
+    --lime-700: #afb42b;
+    --lime-A200: #eeff41;
+    --lime-A400: #c6ff00;
+    --lime-A700: #aeea00;
+    --light-green-A400: #76ff03;
+    --orange-500: #ff9800;
+    --orange-700: #f57c00;
+    --purple-100: #e1bee7;
+    --purple-200: #ce93d8;
+    --purple-300: #ba68c8;
+    --purple-400: #ab47bc;
+    --purple-500: #9c27b0;
+    --purple-600: #8e24aa;
+    --purple-700: #7b1fa2;
+    --purple-900: #4a148c;
+    --grey-50: #fafafa;
+    --grey-100: #f5f5f5;
+    --grey-200: #eee;
+    --grey-300: #e0e0e0;
+    --grey-400: #bdbdbd;
+    --grey-500: #9e9e9e;
+    --grey-600: #757575;
+    --grey-700: #616161;
+    --grey-800: #424242;
+    --grey-900: #212121;
+    --red-500: #f44336;
+    --red-600: #e53935;
+    --white: #fff;
+
+    /* Theme colors for `light` theme. */
+
+    /* Backgrounds */
+    --background-global-color: var(--grey-100);
+    --background-content-color: var(--grey-50);
+    --background-input-color: var(--grey-200);
+    --background-control-color: var(--grey-800);
+
+    /* Primary controls colors */
+    --primary-control-color: var(--grey-100);
+    --secondary-control-color: var(--grey-300);
+
+    /* Primary text colors */
+    --primary-text-color: var(--grey-900);
+    --primary-contrast-text-color: var(--grey-100);
+
+    /* Secondary text colors */
+    --secondary-text-color: var(--grey-500);
+    --secondary-contrast-text-color: var(--indigo-700);
+
+    /* Primary accent colors */
+    --primary-accent-color: var(--indigo-A400);
+    --primary-accent-hover-color: var(--indigo-A700);
+
+    /* Secondary accent colors */
+    --secondary-accent-color: var(--indigo-200);
+    --secondary-accent-hover-color: var(--indigo-400);
+
+    /* State colors */
+    --alert-color: var(--red-600);
+    --secondary-color: var(--lime-A700);
+    --warning-color: var(--orange-700);
+
+    /* Elements */
+    --divider-color: var(--grey-300);
+
+    @media (prefers-color-scheme: dark) {
+        /* Theme colors for `dark` theme. */
+
+        /* Backgrounds */
+        --background-global-color: var(--grey-900);
+        --background-content-color: var(--grey-800);
+        --background-input-color: var(--grey-800);
+        --background-control-color: var(--grey-800);
+
+        /* Primary controls colors */
+        --primary-control-color: var(--grey-100);
+        --secondary-control-color: var(--grey-300);
+
+        /* Primary text colors */
+        --primary-text-color: var(--grey-100);
+        --primary-contrast-text-color: var(--white);
+
+        /* Secondary text colors */
+        --secondary-text-color: var(--grey-500);
+        --secondary-contrast-text-color: var(--lime-700);
+
+        /* Primary accent colors */
+        --primary-accent-color: var(--lime-700);
+        --primary-accent-hover-color: var(--lime-500);
+
+        /* Secondary accent colors */
+        --secondary-accent-color: var(--lime-200);
+        --secondary-accent-hover-color: var(--lime-300);
+
+        /* State colors */
+        --alert-color: var(--red-500);
+        --success-color: var(--light-green-A400);
+        --warning-color: var(--orange-500);
+
+        /* Elements */
+        --divider-color: var(--grey-700);
+    }
+}

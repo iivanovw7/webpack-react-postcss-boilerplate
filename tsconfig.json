@@ -1,0 +1,65 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "lib": [
+            "es5",
+            "es6",
+            "es2015.promise",
+            "es2016.array.include",
+            "dom",
+            "es2017",
+            "es2018.intl",
+            "esnext.intl"
+        ],
+        "allowJs": true,
+        "baseUrl": "src",
+        "checkJs": false,
+        "module": "commonjs",
+        "target": "es6",
+        "jsx": "react",
+        "resolveJsonModule": true,
+        "sourceMap": true,
+        "allowUnreachableCode": false,
+        "alwaysStrict": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": false,
+        "noImplicitThis": true,
+        "noStrictGenericChecks": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "strict": true,
+        "skipDefaultLibCheck": true,
+        "useDefineForClassFields": true,
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+        "types": [
+            "./src/types/globals",
+            "./src/types/custom",
+            "./src/types/util",
+            "node",
+            "jest",
+            "webpack-env"
+        ]
+    },
+    "rules": {
+        "quotemark": [
+            true,
+            "single"
+        ]
+    },
+    "include": [
+        "./src/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "typedocOptions": {
+        "entryPoints": [
+            "src/app.tsx"
+        ],
+        "out": "docs"
+    }
+}
