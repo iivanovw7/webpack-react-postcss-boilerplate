@@ -3,7 +3,6 @@
  * @module _/config/webpack/prod
  */
 const CompressionPlugin = require('compression-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -20,7 +19,7 @@ module.exports = function getWebpackProdConfig(env) {
         mode: 'production',
         plugins: [
             new WebpackAssetsManifest({
-                output: path.join(__dirname, '../../dist/asset-manifest.json'),
+                output: path.join(__dirname, '../../build/dist/asset-manifest.json'),
                 merge: true,
             }),
             new ImageMinimizerPlugin({
@@ -45,7 +44,6 @@ module.exports = function getWebpackProdConfig(env) {
             new webpack.DefinePlugin({
                 CONFIG: JSON.stringify('production'),
             }),
-            new FaviconsWebpackPlugin(path.join(__dirname, '../../', './assets/favicons/prod-favicon.png')),
             new CompressionPlugin({
                 algorithm: 'gzip',
                 test: /\.js$|\.css$|\.html$/,
@@ -104,7 +102,7 @@ module.exports = function getWebpackProdConfig(env) {
         },
         output: {
             filename: 'assets/js/[name].[chunkhash].js',
-            path: path.resolve(__dirname, '../../dist'),
+            path: path.resolve(__dirname, '../../build/dist'),
         }
     });
 };

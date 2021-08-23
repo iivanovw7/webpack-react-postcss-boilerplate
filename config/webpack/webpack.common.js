@@ -14,6 +14,7 @@ const path = require('path');
 // TODO Add offline support with https://developers.google.com/web/tools/workbox
 
 module.exports = function getWebpackCommonConfig(env) {
+    const isProd = env.mode === 'production';
 
     // Should enable tracing of deprecation warnings.
     if (env.traceDeprecation) {
@@ -24,11 +25,15 @@ module.exports = function getWebpackCommonConfig(env) {
         new CleanWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
+            favicon: path.join(__dirname, '../../', isProd
+                ? './assets/favicons/prod-favicon.png'
+                : './assets/favicons/dev-favicon.png'
+            ),
             title: 'Title',
             filename: './index.html',
             template: path.resolve(__dirname, './../../src/template/index.html'),
             inject: true,
-            minify: env.mode === 'production',
+            minify: isProd,
         }),
         new MiniCssExtractPlugin({
             filename: 'assets/css/[name].bundle.css',
@@ -147,7 +152,7 @@ module.exports = function getWebpackCommonConfig(env) {
             : false,
         output: {
             filename: 'assets/js/[name].bundle.js',
-            path: path.resolve(__dirname, '../../dist'),
+            path: path.resolve(__dirname, '../../build/dist'),
             publicPath: '/',
         },
     };

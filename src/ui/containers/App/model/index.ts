@@ -48,7 +48,7 @@ const appSlice = createSlice({
                 state.wait = 0;
             }
         },
-        setLoader(state, action): void {
+        setLoader(state, action: { payload: boolean }): void {
             state.loading = action.payload;
         }
     }

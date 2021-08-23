@@ -4,21 +4,33 @@
  */
 
 const waitScreen = document.querySelector('.preloader');
+const globalLoader = document.querySelector<HTMLElement>('.preloader-progress');
 
 /**
- * Removes loading screen.
+ * Sets wait screen state.
+ * @param {boolean} isShown - If `true` shows application wait screen.
  */
-export function hideWaitScreen(): void {
-    if (waitScreen && ! waitScreen.classList.contains('preloader-hidden')) {
-        waitScreen.classList.add('preloader-hidden');
+export function setWaitScreen(isShown: boolean): void {
+    if (waitScreen) {
+        const { classList } = waitScreen;
+
+        if (isShown) {
+            classList.remove('preloader-hidden');
+        }
+        else if (! classList.contains('preloader-hidden')) {
+            classList.add('preloader-hidden');
+        }
     }
 }
 
 /**
- * Display loading screen.
+ * Sets global loader visibility state.
+ * @param {boolean} isVisible - If `true` shows top progress bar.
  */
-export function showWaitScreen(): void {
-    if (waitScreen?.classList.contains('preloader-hidden')) {
-        waitScreen.classList.remove('preloader-hidden');
+export function setGlobalLoader(isVisible: boolean): void {
+    if (globalLoader) {
+        globalLoader.style.display = isVisible
+            ? 'block'
+            : 'none';
     }
 }

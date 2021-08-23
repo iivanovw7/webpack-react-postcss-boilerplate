@@ -28,5 +28,3 @@ export function Home(): ReactElement {
         </Wrapper>
     );
 }
-
-export default Home;

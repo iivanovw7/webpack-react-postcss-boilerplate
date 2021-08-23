@@ -18,9 +18,9 @@ export interface ISearchProps {
 }
 
 /** Input debounce delay. */
-const debounceTimeout = 50;
+// const debounceTimeout = 50;
 
-export function Search(props: ISearchProps): ReactElement {
+export function Search(): ReactElement {
 
     return (
         <Input
