@@ -26,7 +26,7 @@ const { html } = env;
  * Main application component.
  * Contains router setup and global styles connection.
  * @constructor
-
+ *
  * @return {ReactElement} React component with children.
  */
 export function App(): ReactElement {

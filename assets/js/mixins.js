@@ -158,6 +158,7 @@ function media(mixin, max, type = 'width', min = 'xs') {
 }
 
 /**
+ * Sets clipping rules for non-fit text.
  *
  * @param {object} mixin - parent node.
  * @param {string} [textOverflowValue = 'ellipsis'] - css `text-overflow` prop value.
@@ -182,6 +183,47 @@ function textOverflow(mixin, textOverflowValue = 'ellipsis', endWhitespace = tru
     return overflowMixin;
 }
 
+/**
+ *  Centers both horizontally and vertically or in one direction,
+ *	    assuming parent element has `position: relative;` property.
+ *
+ * @param {object} mixin - parent node.
+ * @param {"X" | "Y" | boolean} axis [false]
+ * 		string represents `axis`, if nothing passed - centers in both directions.
+ *
+ * @return {object} mixin - returns mixin content.
+ *
+ * @example
+ * `@mixin centerAbsolute;`
+ * `@mixin centerAbsolute X;`
+ */
+function centerAbsolute(mixin, axis) {
+    const positioning = {
+        position: 'absolute'
+    };
+
+    switch (axis) {
+        case 'X': {
+            positioning.left = '50%';
+            positioning.transform = 'translateX(-50%)';
+            break;
+        }
+        case 'Y': {
+            positioning.top = '50%';
+            positioning.transform = 'translateY(-50%)';
+            break;
+        }
+        default: {
+            positioning.left = '50%';
+            positioning.top = '50%';
+            positioning.transform = 'translate(-50%, -50%)';
+            break;
+        }
+    }
+
+    return positioning;
+}
+
 module.exports = {
     flex,
     shadows,
@@ -189,7 +231,8 @@ module.exports = {
     justifyAlignFlex,
     media,
     transition,
-    textOverflow
+    textOverflow,
+    centerAbsolute
 };
 
 /* eslint-enable max-params */

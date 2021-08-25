@@ -2,15 +2,15 @@
  * Module contains Error message.
  * @module ui/containers/App/ErrorFallback
  */
-import type { ReactElement } from 'react';
+import type { ReactElement, SyntheticEvent } from 'react';
 import React, { memo } from 'react';
 
 /**
  * Reloads browser page
- * @param {SyntheticEvent | Event} eventData
- *  event data
+ * @param {SyntheticEvent} eventData
+ *  object represents click event data
  */
-function handleReloadClick(eventData): void {
+function handleReloadClick(eventData: SyntheticEvent): void {
     eventData.preventDefault();
     eventData.stopPropagation();
     location.reload();

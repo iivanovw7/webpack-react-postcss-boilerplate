@@ -2,35 +2,60 @@
  * Module contains search component.
  * @module ui/components/Search
  */
+import debounce from 'lodash.debounce';
 import type { ReactElement } from 'react';
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
-import { Icon } from '../../elements/Icon';
+import { DEBOUNCE_TIMEOUT } from '../../../config/constants';
 import { Input } from '../../elements/Input';
 
+import { Wrapper } from './Styled';
+
 export interface ISearchProps {
-    /** Input element `id. */
+    /** Input element `id`. */
     id: string;
     /** Search field label. */
     label?: string;
     /** Function called on every search string change. */
-    onInputChange: (value: string) => void;
+    onSearch: (value: string) => void;
 }
 
-/** Input debounce delay. */
-// const debounceTimeout = 50;
+/**
+ * Search input.
+ *
+ * @param {ISearchProps} props - represents component props.
+ * @constructor
+ *
+ * @return {ReactElement} React component with children.
+ */
+export function Search(props: ISearchProps): ReactElement {
+    const { id, label = 'Search', onSearch } = props;
+    const [searchValue, setSearchValue] = useState('');
+    const handleSearch = useCallback(
+        debounce((query: string) => onSearch(query), DEBOUNCE_TIMEOUT),
+        [onSearch]
+    );
 
-export function Search(): ReactElement {
+    /**
+     * Handles input change.
+     * @param {string} value - new input value.
+     */
+    function handleChange({ target: { value } }: React.ChangeEvent<HTMLInputElement>): void {
+        setSearchValue(value);
+        handleSearch(value);
+    }
 
     return (
-        <Input
-            id="packages-search-input"
-            label="npm package name"
-            type="search"
-            variant="primary"
-            value="text"
-        >
-            <Icon path="search" />
-        </Input>
+        <Wrapper>
+            <Input
+                id={ id }
+                label={ label }
+                type="search"
+                variant="primary"
+                icon="search"
+                value={ searchValue }
+                onChange={ handleChange }
+            />
+        </Wrapper>
     );
 }
