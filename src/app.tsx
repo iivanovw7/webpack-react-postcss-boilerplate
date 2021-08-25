@@ -14,7 +14,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import { runningMode } from './config';
-import App from './ui/containers/App';
+import { App } from './ui/containers/App';
 import appHistory from './ui/routes/history';
 import configureStore from './ui/store/configureStore';
 import { reportWebVitals } from './utils/reportWebVitals';

@@ -1,6 +1,6 @@
 /**
  * Module contains additional styles used in theme switcher.
- * @module ui/components/ThemeSwitch/Styling
+ * @module ui/components/ThemeSwitch/Styled
  */
 import styled from 'astroturf/react';
 

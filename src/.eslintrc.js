@@ -1,3 +1,8 @@
+/**
+ * Eslint configuration.
+ * @module eslintrc.js
+ */
+
 module.exports = {
     'extends': [
         'ts-guard/react',
@@ -7,6 +12,7 @@ module.exports = {
             files: ['**/*.ts', '**/*.tsx'],
             'extends': [
                 'plugin:import/typescript',
+                'plugin:@typescript-eslint/recommended',
                 'ts-guard/react',
                 'ts-guard/ext',
             ],
@@ -14,7 +20,7 @@ module.exports = {
                 JSX: 'readonly',
             },
             parser: '@typescript-eslint/parser',
-            plugins: ['@typescript-eslint'],
+            plugins: ['@typescript-eslint', '@typescript-eslint/eslint-plugin', 'eslint-plugin-tsdoc'],
             parserOptions: {
                 ecmaFeatures: {
                     jsx: true,
@@ -47,6 +53,7 @@ module.exports = {
             files: ['**/Styled.ts'],
             rules: {
                 'multiline-ternary': 'off',
+                'tsdoc/syntax': 'warn'
             }
         }
     ],

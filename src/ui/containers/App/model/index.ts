@@ -1,5 +1,5 @@
 /**
- * Module contains reducers related to all application.
+ * Module contains state slice reducers related to all application.
  * @module ui/containers/App/model
  */
 import { createSlice } from '@reduxjs/toolkit';
@@ -15,15 +15,6 @@ export const initState = {
 };
 
 export type TAppState = typeof initState;
-export type TAppWait = TAppState['wait'];
-export type TAppLoading = TAppState['loading'];
-export type TSetLoader = {
-    type: string,
-    payload: TAppLoading
-};
-export type TModifyWait = {
-    type: string
-};
 
 /**
  *  Combines functions of createAction and createReducer of application.
@@ -35,20 +26,20 @@ const appSlice = createSlice({
     name: 'state/appSlice',
     initialState: initState,
     reducers: {
-        startWait(state): void {
+        startWait(state: TAppState): void {
             state.wait++;
         },
-        stopWait(state): void {
+        stopWait(state: TAppState): void {
             if (state.wait > 0) {
                 state.wait--;
             }
         },
-        completeWait(state): void {
+        completeWait(state: TAppState): void {
             if (state.wait > 0) {
                 state.wait = 0;
             }
         },
-        setLoader(state, action): void {
+        setLoader(state, action: { payload: boolean }): void {
             state.loading = action.payload;
         }
     }

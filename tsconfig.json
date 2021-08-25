@@ -55,11 +55,5 @@
     ],
     "exclude": [
         "node_modules"
-    ],
-    "typedocOptions": {
-        "entryPoints": [
-            "src/app.tsx"
-        ],
-        "out": "docs"
-    }
+    ]
 }

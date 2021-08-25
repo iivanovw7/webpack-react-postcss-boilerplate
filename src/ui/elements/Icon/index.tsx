@@ -23,11 +23,11 @@ interface ImportedIconInterface extends FC<SVGProps<SVGSVGElement>>, IIconProps 
 
 /**
  * Dynamically loads icon from assets.
+ * @constructor
  * @name elements/Icon
  * @method
  * @param {IIconProps} props - contains component props.
  * @return {Node} React component with children.
- * @constructor
  */
 export function Icon(props: IIconProps): Nullable<ReactElement<JSX.Element>> {
     const { path, fill = 'currentColor' } = props;

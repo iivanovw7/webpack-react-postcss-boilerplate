@@ -2,7 +2,6 @@
  * Module contains development webpack config.
  * @module _/config/webpack/dev
  */
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const webpack = require('webpack');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const { merge } = require('webpack-merge');
@@ -26,7 +25,6 @@ module.exports = function getWebpackDevConfig(env) {
             new webpack.DefinePlugin({
                 CONFIG: JSON.stringify('development'),
             }),
-            new FaviconsWebpackPlugin(path.join(__dirname, '../../', './assets/favicons/dev-favicon.png')),
             new TypesGenerator({
                 entry: path.join(__dirname, '../../', './assets/svg'),
                 folderName: 'icons',
