@@ -15,7 +15,7 @@ const logger = Logger.getInstance();
 /**
  * Loads sate object from local storage, if no object has been found returns `undefined`.
  *
- * @return {any|undefined} state new state object if it exists.
+ * @return {RootState|undefined} state new state object if it exists.
  */
 export const loadState = (): RootState | undefined => {
     try {
@@ -32,8 +32,8 @@ export const loadState = (): RootState | undefined => {
     }
     catch (err: unknown) {
         logger.send({
-            type: ERROR,
             message: `Error during state load: ${err as string}`,
+            type: ERROR,
         });
 
         // eslint-disable-next-line no-undefined
@@ -43,7 +43,7 @@ export const loadState = (): RootState | undefined => {
 
 /**
  * Serializes and saves state object in local storage.
- * @param {Object} state - application state object.
+ * @param {Partial<RootState>} state - application state object.
  */
 export const saveState = (state: Partial<RootState>): void => {
     try {

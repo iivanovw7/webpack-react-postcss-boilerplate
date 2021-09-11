@@ -32,16 +32,16 @@ const settings = {
      */
     net: {
         /**
-         * Default request timeout.
-         * @type {number}
-         */
-        requestTimeout: 10000,
-        /**
          * Npm api url string.
          * @see {@link https://api-docs.npms.io}
          * @type {string}
          */
-        npmApiUrl: 'https://api.npms.io/v2'
+        npmApiUrl: 'https://api.npms.io/v2',
+        /**
+         * Default request timeout.
+         * @type {number}
+         */
+        requestTimeout: 10000,
     },
 };
 

@@ -3,7 +3,7 @@
  * Contains basic implementation of application logger.
  * @module log
  */
-import config from '../config';
+import Config from '../config';
 import type { LogModeMap, LogLevelMap } from '../config/constants';
 import { logLevelMap, logModeMap, loggerColorMap } from '../config/constants';
 import { formatLoggerDate } from '../utils/date';
@@ -24,13 +24,13 @@ type AnyMessageType = typeof logLevelMap[keyof LogLevelMap];
 
 type SendArgs = {
     /**
-     * Constant, message sender type.
-     */
-    type: AnyMessageType;
-    /**
      * Message text string.
      */
     message: string;
+    /**
+     * Constant, message sender type.
+     */
+    type: AnyMessageType;
 };
 
 /**
@@ -71,7 +71,7 @@ class Logger {
     public static getInstance(): Logger {
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         if (! Logger.instance) {
-            Logger.instance = new Logger({ logLevel: config.logLevel });
+            Logger.instance = new Logger({ logLevel: Config.logLevel });
         }
 
         return Logger.instance;

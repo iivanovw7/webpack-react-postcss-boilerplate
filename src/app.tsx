@@ -23,7 +23,10 @@ import * as serviceWorker from './utils/serviceWorker';
 const store = configureStore(appHistory);
 const MOUNT_NODE = document.getElementById('app');
 
-const render = (): void => {
+/**
+ *  Renders application at specified mount point.
+ */
+function render(): void {
     ReactDOM.render(
         <StrictMode>
             <Provider store={ store }>
@@ -34,7 +37,7 @@ const render = (): void => {
         </StrictMode>,
         MOUNT_NODE
     );
-};
+}
 
 render();
 

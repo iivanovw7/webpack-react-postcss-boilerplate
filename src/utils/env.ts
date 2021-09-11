@@ -12,6 +12,6 @@
 const isDarkTheme = (): boolean => window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 export default {
-    isDarkTheme: isDarkTheme(),
     html: document.documentElement,
+    isDarkTheme: isDarkTheme(),
 };

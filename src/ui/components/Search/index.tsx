@@ -3,11 +3,12 @@
  * @module ui/components/Search
  */
 import debounce from 'lodash.debounce';
-import type { ReactElement } from 'react';
+import type { ReactElement, ChangeEvent} from 'react';
 import React, { useCallback, useState } from 'react';
 
 import { DEBOUNCE_TIMEOUT } from '../../../config/constants';
 import { Input } from '../../elements/Input';
+import Button from '../../elements/Button';
 
 import { Wrapper } from './Styled';
 
@@ -31,6 +32,7 @@ export interface ISearchProps {
 export function Search(props: ISearchProps): ReactElement {
     const { id, label = 'Search', onSearch } = props;
     const [searchValue, setSearchValue] = useState('');
+
     const handleSearch = useCallback(
         debounce((query: string) => onSearch(query), DEBOUNCE_TIMEOUT),
         [onSearch]
@@ -40,9 +42,17 @@ export function Search(props: ISearchProps): ReactElement {
      * Handles input change.
      * @param {string} value - new input value.
      */
-    function handleChange({ target: { value } }: React.ChangeEvent<HTMLInputElement>): void {
+    function handleChange({ target: { value } }: ChangeEvent<HTMLInputElement>): void {
         setSearchValue(value);
         handleSearch(value);
+    }
+
+    /**
+     * Handles search button click.
+     */
+    function handleClick(): void {
+        // eslint-disable-next-line no-console
+        console.log('SEARCH');
     }
 
     return (
@@ -52,10 +62,11 @@ export function Search(props: ISearchProps): ReactElement {
                 label={ label }
                 type="search"
                 variant="primary"
-                icon="search"
                 value={ searchValue }
                 onChange={ handleChange }
-            />
+            >
+                <Button icon="search" onClick={handleClick} />
+            </Input>
         </Wrapper>
     );
 }

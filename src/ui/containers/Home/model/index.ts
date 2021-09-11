@@ -16,14 +16,14 @@ export const initState = {
 export type THomeState = typeof initState;
 export type THomeSearch = THomeState['search'];
 export type TModifySearchText = {
-    type: string,
     payload: THomeSearch,
+    type: string,
 };
 
 
 export const homeSlice = createSlice({
-    name: 'state/homeSlice',
     initialState: initState,
+    name: 'state/homeSlice',
     reducers: {
         setSearchText(state: THomeState, action: PayloadAction<THomeSearch>) {
             state.search = action.payload;

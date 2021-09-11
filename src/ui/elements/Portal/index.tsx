@@ -8,8 +8,10 @@ import { createPortal} from 'react-dom';
 import usePortal from '../../../utils/hooks/usePortal';
 
 export interface IPortalParams {
+    /** Portal `children`, eg search button and etc. */
+    children: ReactNode;
+    /** Portal `id`. */
     id: string;
-    children: ReactNode
 }
 
 /**
