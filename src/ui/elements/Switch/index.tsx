@@ -12,6 +12,11 @@ import { Checkbox, Container, Handle, Wrapper } from './Styled';
 interface ISwitchProps {
     /** If switch is enabled. */
     checked: boolean;
+    /**
+     *  If passed will be used as background image for checked state.
+     *  @default null
+     */
+    checkedImg?: Nullable<string>;
     /** Switch handler. */
     onChange: () => void;
     /**
@@ -19,11 +24,6 @@ interface ISwitchProps {
      *  @default false
      */
     themeSwitch: boolean;
-    /**
-     *  If passed will be used as background image for checked state.
-     *  @default null
-     */
-    checkedImg?: Nullable<string>;
     /**
      *  If passed will be used as background image for unchecked state.
      *  @default null

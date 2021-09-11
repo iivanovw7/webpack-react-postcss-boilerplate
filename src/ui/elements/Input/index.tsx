@@ -5,33 +5,30 @@
 import type { ChangeEvent, InputHTMLAttributes, ReactElement, ReactNode } from 'react';
 import React from 'react';
 
-import { Icon } from '../Icon';
-import type { IconType } from '../Icon/types';
+import { StyledInput, Label, Span, InputContainer } from './Styled';
 
-import { StyledInput, Label, Span, InputContainer, IconContainer } from './Styled';
-
-export type TVariant = 'primary' | 'secondary' | 'disabled';
+export type TVariant = 'primary' | 'secondary';
 type TChangeHandler = (event: ChangeEvent<HTMLInputElement>) => void;
 
 export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
     /** Input children, eg search button and etc. */
     children?: ReactNode;
+    /** Button is disabled. */
+    disabled?: boolean;
     /** Label text. */
     label?: string;
-    /** Input type [type = 'text'] */
-    type?: string;
-    /** Text input value. */
-    value: string;
-    /** onInput event handler. */
-    onInput?: TChangeHandler;
     /** onChange event handler. */
     onChange?: TChangeHandler;
-    /** Input variant */
-    variant?: TVariant;
+    /** onInput event handler. */
+    onInput?: TChangeHandler;
+    /** Input type [type = 'text'] */
+    type?: string;
     /** Validation text. */
     validation?: string;
-    /** Input icon */
-    icon?: IconType;
+    /** Text input value. */
+    value: string;
+    /** Input variant */
+    variant?: TVariant;
 }
 
 /**
@@ -45,6 +42,7 @@ export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
 export function Input(props: IInputProps): ReactElement {
     const {
         label,
+        disabled,
         children,
         id,
         placeholder,
@@ -56,7 +54,6 @@ export function Input(props: IInputProps): ReactElement {
         type = 'text',
         variant = 'primary',
         validation,
-        icon
     } = props;
 
     return (
@@ -66,6 +63,7 @@ export function Input(props: IInputProps): ReactElement {
             <InputContainer>
                 <StyledInput
                     type={ type }
+                    disabled={ disabled }
                     id={ id }
                     variant={ variant }
                     placeholder={ placeholder }
@@ -74,14 +72,8 @@ export function Input(props: IInputProps): ReactElement {
                     onInput={ onInput }
                     onFocus={ onFocus }
                     onBlur={ onBlur }
-                    icon={Boolean(icon)}
                 />
                 { children }
-                { icon && (
-                    <IconContainer>
-                        <Icon path={icon} />
-                    </IconContainer>
-                ) }
             </InputContainer>
         </Label>
     );

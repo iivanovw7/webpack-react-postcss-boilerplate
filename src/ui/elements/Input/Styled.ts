@@ -4,12 +4,9 @@
  */
 import styled from 'astroturf/react';
 
-import type { TVariant } from './index';
+import type { IInputProps } from './index';
 
-type TInputProps = {
-    variant: TVariant;
-    icon: boolean;
-};
+type TInputProps = Pick<IInputProps, 'disabled' | 'variant'>;
 
 export const Label = styled('label')`
     @mixin flex;
@@ -20,25 +17,7 @@ export const Label = styled('label')`
 export const InputContainer = styled('div')`
     position: relative;
     margin-top: units(8);
-
-    svg {
-        @mixin transition;
-    }
-
-    &:focus-within svg {
-        color: var(--primary-accent-color);
-    }
 `;
-
-export const IconContainer = styled('div')`
-    @mixin centerAbsolute Y;
-
-    right: units(16);
-    width: units(23);
-    height: units(25);
-    border: 0;
-`;
-
 
 export const StyledInput = styled('input')<TInputProps>`
     @mixin shadows;
@@ -50,10 +29,12 @@ export const StyledInput = styled('input')<TInputProps>`
     border: 1px solid var(--divider-color);
     border-radius: $borderRadius;
 
-    &:focus,
-    &:focus-visible {
-        border-color: var(--primary-accent-color);
-        outline: none;
+    &:not([disabled]) {
+        &:focus,
+        &:focus-visible {
+            border-color: var(--primary-accent-color);
+            outline: none;
+        }
     }
 
     &.icon {

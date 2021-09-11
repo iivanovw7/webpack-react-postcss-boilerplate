@@ -4,26 +4,26 @@
  */
 
 export type LogLevelMap = {
-    SUCCESS: string;
-    INFO: string;
     DEBUG: string;
     ERROR: string;
+    INFO: string;
+    SUCCESS: string;
     WARNING: string;
 };
 
 export type LogModeMap = {
-    LOGGER_ERROR: string;
     LOGGER_DEBUG: string;
+    LOGGER_ERROR: string;
     LOGGER_OFF: string;
 };
 
 export type HttpMethodMap = {
-    GET: string;
-    POST: string;
-    HEAD: string;
     DELETE: string;
-    PUT: string;
+    GET: string;
+    HEAD: string;
     PATCH: string;
+    POST: string;
+    PUT: string;
 };
 
 /**
@@ -44,12 +44,12 @@ export const DARK_THEME: Readonly<string> = 'dark';
  * @type {{HEAD: string, DELETE: string, POST: string, GET: string, PUT: string, PATCH: string}}
  */
 export const httpMethodMap: Readonly<HttpMethodMap> = {
-    GET: 'GET',
-    POST: 'POST',
-    HEAD: 'HEAD',
     DELETE: 'DELETE',
-    PUT: 'PUT',
+    GET: 'GET',
+    HEAD: 'HEAD',
     PATCH: 'PATCH',
+    POST: 'POST',
+    PUT: 'PUT',
 };
 
 /**
@@ -58,8 +58,8 @@ export const httpMethodMap: Readonly<HttpMethodMap> = {
  * @type {{ERROR: string, DEBUG: string, OFF: string}}
  */
 export const logModeMap: Readonly<LogModeMap> = {
-    LOGGER_ERROR: 'error',
     LOGGER_DEBUG: 'debug',
+    LOGGER_ERROR: 'error',
     LOGGER_OFF: 'off',
 };
 
@@ -69,18 +69,18 @@ export const logModeMap: Readonly<LogModeMap> = {
  * @type {{SUCCESS: string, ERROR: string, INFO: string, DEBUG: string, WARNING: string}}
  */
 export const logLevelMap: Readonly<LogLevelMap> = {
-    SUCCESS: 'success',
-    INFO: 'info',
     DEBUG: 'debug',
     ERROR: 'error',
+    INFO: 'info',
+    SUCCESS: 'success',
     WARNING: 'warning',
 };
 
 export const loggerColorMap: Readonly<LogLevelMap> = {
-    SUCCESS: 'rgb(102,255,69)',
-    INFO: 'rgb(49,196,251)',
     DEBUG: 'rgb(243,25,255)',
     ERROR: 'rgb(255, 105, 100)',
+    INFO: 'rgb(49,196,251)',
+    SUCCESS: 'rgb(102,255,69)',
     WARNING: 'rgb(255, 220, 93)',
 };
 

@@ -13,6 +13,7 @@ module.exports = {
             'extends': [
                 'plugin:import/typescript',
                 'plugin:@typescript-eslint/recommended',
+                'plugin:typescript-sort-keys/recommended',
                 'ts-guard/react',
                 'ts-guard/ext',
             ],
@@ -20,13 +21,15 @@ module.exports = {
                 JSX: 'readonly',
             },
             parser: '@typescript-eslint/parser',
-            plugins: ['@typescript-eslint', '@typescript-eslint/eslint-plugin', 'eslint-plugin-tsdoc'],
+            plugins: ['@typescript-eslint', '@typescript-eslint/eslint-plugin', 'typescript-sort-keys'],
             parserOptions: {
                 ecmaFeatures: {
                     jsx: true,
                 },
+                ecmaVersion: 2018,
                 project: ['./../tsconfig.eslint.json'],
                 tsconfigRootDir: __dirname,
+                sourceType: 'module'
             },
             rules: {
                 '@typescript-eslint/no-unsafe-call': 0,
@@ -36,6 +39,7 @@ module.exports = {
                 '@typescript-eslint/no-unused-vars': 0,
                 'react/prop-types': 0,
                 'react/no-unused-prop-types': 0,
+                'sort-keys': ['error', 'asc', {'caseSensitive': true, 'natural': false, 'minKeys': 2} ],
             },
             settings: {
                 'import/extensions': ['d.ts', '.ts', '.tsx'],
@@ -53,7 +57,6 @@ module.exports = {
             files: ['**/Styled.ts'],
             rules: {
                 'multiline-ternary': 'off',
-                'tsdoc/syntax': 'warn'
             }
         }
     ],

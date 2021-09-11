@@ -8,15 +8,15 @@ import React, { useEffect, useRef, useState } from 'react';
 
 interface IIconProps {
     /**
-     * Icon file name.
-     * @example "search"
-     */
-    path: string,
-    /**
      * Svg fill prop.
      * @default "currentColor"
      */
     fill?: string,
+    /**
+     * Icon file name.
+     * @example "search"
+     */
+    path: string
 }
 
 interface ImportedIconInterface extends FC<SVGProps<SVGSVGElement>>, IIconProps {}
