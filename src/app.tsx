@@ -15,6 +15,7 @@ import { Provider } from 'react-redux';
 
 import { runningMode } from './config';
 import { App } from './ui/containers/App';
+import { searchSuggestionsData } from './ui/containers/Home/model/saga';
 import appHistory from './ui/routes/history';
 import configureStore from './ui/store/configureStore';
 import { reportWebVitals } from './utils/reportWebVitals';
@@ -22,6 +23,10 @@ import * as serviceWorker from './utils/serviceWorker';
 
 const store = configureStore(appHistory);
 const MOUNT_NODE = document.getElementById('app');
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+store.runSaga(searchSuggestionsData);
 
 /**
  *  Renders application at specified mount point.

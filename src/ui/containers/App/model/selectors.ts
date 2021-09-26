@@ -48,8 +48,8 @@ function selectLocation(state: RootState): RouterLocation<LocationState> {
  */
 const makeSelectApp = createSelector(selectApp, (appState: TAppState) => {
     return {
+        loading: appState.loading,
         wait: appState.wait > 0,
-        loading: appState.loading
     };
 });
 

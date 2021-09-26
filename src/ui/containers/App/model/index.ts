@@ -7,14 +7,14 @@ import { createSlice } from '@reduxjs/toolkit';
 /**
  * Contains initial state.
  */
-export const initState = {
+export const initialState = {
+    /** Controls top page loading bar. */
+    loading: false,
     /** Controls application wait screen. */
     wait: 0,
-    /** Controls top page loading bar. */
-    loading: false
 };
 
-export type TAppState = typeof initState;
+export type TAppState = typeof initialState;
 
 /**
  *  Combines functions of createAction and createReducer of application.
@@ -23,17 +23,9 @@ export type TAppState = typeof initState;
  *     application state slice with state reduces.
  */
 const appSlice = createSlice({
+    initialState,
     name: 'state/appSlice',
-    initialState: initState,
     reducers: {
-        startWait(state: TAppState): void {
-            state.wait++;
-        },
-        stopWait(state: TAppState): void {
-            if (state.wait > 0) {
-                state.wait--;
-            }
-        },
         completeWait(state: TAppState): void {
             if (state.wait > 0) {
                 state.wait = 0;
@@ -41,6 +33,14 @@ const appSlice = createSlice({
         },
         setLoader(state, action: { payload: boolean }): void {
             state.loading = action.payload;
+        },
+        startWait(state: TAppState): void {
+            state.wait++;
+        },
+        stopWait(state: TAppState): void {
+            if (state.wait > 0) {
+                state.wait--;
+            }
         }
     }
 });

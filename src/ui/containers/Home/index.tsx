@@ -34,12 +34,22 @@ export function Home(): ReactElement {
         dispatch(setSearchText(text));
     }
 
+    /**
+     * Handles package select.
+     * @param {string} value - package name.
+     */
+    function handleSelect(value: string): void {
+        // eslint-disable-next-line no-console
+        console.log(value);
+    }
+
     return (
         <Wrapper>
             <Search
                 id="packages-search-input"
                 label="npm package name"
                 onSearch={ handleSearch }
+                onSelect={handleSelect}
             />
         </Wrapper>
     );

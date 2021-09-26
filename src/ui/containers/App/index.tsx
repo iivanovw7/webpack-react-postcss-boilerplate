@@ -11,7 +11,7 @@ import { Route, Switch } from 'react-router-dom';
 import { logLevelMap } from '../../../config/constants';
 import Logger from '../../../log';
 import env from '../../../utils/env';
-import ThemeSwitch from '../../components/ThemeSwitch';
+import { ThemeSwitch } from '../../components/ThemeSwitch';
 import { makeSelectTheme } from '../../components/ThemeSwitch/model/selectors';
 import { Home } from '../Home';
 
@@ -49,8 +49,8 @@ export function App(): ReactElement {
      */
     function handleError(error: Error, info): void {
         logger.send({
-            type: logLevelMap.ERROR,
             message: `Application error: ${ error.stack || '' }, componentStack: ${ String(info) }`,
+            type: logLevelMap.ERROR,
         });
     }
 

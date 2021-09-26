@@ -1,3 +1,10 @@
+/**
+ * Module status map for `http` requests.
+ * @module service/httpStatusCodeMap
+ */
+
+/* eslint-disable sort-keys */
+
 export const HttpStatusCodeMap: Readonly<Record<string, number>> = {
     /**
      * The server has received the request headers and the client should proceed to send the request body
@@ -372,3 +379,5 @@ export const HttpStatusCodeMap: Readonly<Record<string, number>> = {
      */
     NETWORK_AUTHENTICATION_REQUIRED: 511
 };
+
+/* eslint-enable sort-keys */

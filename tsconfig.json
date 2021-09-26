@@ -36,7 +36,7 @@
             "./node_modules/@types"
         ],
         "types": [
-            "./src/types/globals",
+            "./src/types/env",
             "./src/types/custom",
             "./src/types/util",
             "node",

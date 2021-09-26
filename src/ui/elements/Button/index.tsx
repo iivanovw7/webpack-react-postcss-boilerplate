@@ -34,7 +34,7 @@ export interface IButtonProps {
 }
 
 /**
- * Creates `Button` component.
+ * Creates `PlainButton` component.
  * @constructor
  * @name elements/Button
  * @method
@@ -42,7 +42,7 @@ export interface IButtonProps {
  * @param {ForwardedRef<HTMLButtonElement>} ref - contains button `ref`.
  * @return {ReactElement} React component with children.
  */
-function Button(props: IButtonProps, ref: ForwardedRef<HTMLButtonElement>): ReactElement {
+function PlainButton(props: IButtonProps, ref: ForwardedRef<HTMLButtonElement>): ReactElement {
     const { children, disabled, dataId, variant = 'primary', icon, text, onClick } = props;
 
     return (
@@ -67,4 +67,4 @@ function Button(props: IButtonProps, ref: ForwardedRef<HTMLButtonElement>): Reac
     );
 }
 
-export default forwardRef(Button);
+export const Button = forwardRef(PlainButton);

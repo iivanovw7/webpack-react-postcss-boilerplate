@@ -18,6 +18,7 @@ declare global {
 
     namespace JSX {}
 
+    // eslint-disable-next-line import/namespace
     interface Location extends H.Location {
         path: string;
     }
@@ -27,6 +28,4 @@ declare global {
 
     /** Represents type of `nullable` object. */
     type Nullable<T> = T | null;
-
-    type UnwrapPromise<T extends Promise<any>> = T extends Promise<infer Data> ? Data : never;
 }

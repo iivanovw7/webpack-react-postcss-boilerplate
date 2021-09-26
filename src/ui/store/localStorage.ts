@@ -52,8 +52,8 @@ export const saveState = (state: Partial<RootState>): void => {
     }
     catch (err: unknown) {
         logger.send({
-            type: ERROR,
             message: `Error during state save: ${err as string}`,
+            type: ERROR,
         });
     }
 };

@@ -88,5 +88,5 @@ export const loggerColorMap: Readonly<LogLevelMap> = {
  * Debounce delay in `ms`.
  * @type {number}
  */
-export const DEBOUNCE_TIMEOUT = 50;
+export const DEBOUNCE_TIMEOUT = 500;
 

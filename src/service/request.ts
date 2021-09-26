@@ -9,11 +9,9 @@ import request from 'superagent/lib/client';
 import config from '../config';
 import { httpMethodMap, logLevelMap } from '../config/constants';
 import Logger from '../log';
+import type { AnyObject } from '../types/util';
 
 import { HttpStatusCodeMap } from './httpStatusCodeMap';
-
-const logger = Logger.getInstance();
-const { OK, MULTIPLE_CHOICES } = HttpStatusCodeMap;
 
 type THeaderSet = Record<string, string>;
 
@@ -21,16 +19,22 @@ interface IRequestData {
     body?: never;
     headerSet: THeaderSet;
     method: string;
+    query?: AnyObject;
     timeout?: number;
     url: string;
-    query?: never;
 }
 
 interface ICreateRequestParams {
-    method?: string;
     headerSet?: THeaderSet;
+    method?: string;
+    query?: AnyObject;
+    timeout?: number;
     url: string;
 }
+
+const logger = Logger.getInstance();
+const { OK, MULTIPLE_CHOICES } = HttpStatusCodeMap;
+const { net: { requestTimeout }} = config;
 
 /**
  * Checks if a network request came back with correct header, if not throws error.
@@ -44,16 +48,16 @@ export function checkStatus(url: string, response: SuperagentResponse): Superage
 
     if (responseStatus >= OK && responseStatus < MULTIPLE_CHOICES) {
         logger.send({
-            type: logLevelMap.INFO,
             message: `Request: ${ url }. \n Received code: ${ responseStatus }.`,
+            type: logLevelMap.INFO,
         });
 
         return response;
     }
 
     logger.send({
-        type: logLevelMap.ERROR,
         message: `Error [${ responseStatus }] during network request: \n ${ text }`,
+        type: logLevelMap.ERROR,
     });
 
     throw new Error(text);
@@ -69,22 +73,22 @@ export function sendRequest(requestData: IRequestData): SuperagentRequest {
     const { method, url, headerSet, timeout, query, body } = requestData;
 
     return request(method, url)
-        .timeout(timeout || config.net.requestTimeout)
+        .timeout(timeout || requestTimeout)
         .set(headerSet)
         .query(query)
         .send(body)
         .then((res: SuperagentResponse) => checkStatus(url, res))
         .then((res: SuperagentResponse) => {
             return {
-                headers: res.headers,
                 body: res.body,
+                headers: res.headers,
                 status: res.status,
             };
         })
         .catch((err: ResponseError) => { // eslint-disable-line @typescript-eslint/dot-notation
             logger.send({
-                type: logLevelMap.ERROR,
                 message: `Error [${ String(err.status) }] during network request: ${ err.message }`,
+                type: logLevelMap.ERROR,
             });
         }) as SuperagentRequest;
 }
@@ -93,9 +97,9 @@ export function sendRequest(requestData: IRequestData): SuperagentRequest {
  * Prepares base request data.
  * @param {ICreateRequestParams} params - request parameters.
  *
- * @return {function | undefined} returns request method.
+ * @return {function} returns request method.
  */
-export function createRequest(params: ICreateRequestParams): SuperagentRequest | void {
+export function createRequest(params: ICreateRequestParams): SuperagentRequest {
     const withDefaultHeader = propOr({ 'Content-Type': 'application/json' }, 'headerSet') as (ICreateRequestParams) => THeaderSet;
     const requestData = {
         method: httpMethodMap.GET,

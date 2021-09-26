@@ -8,29 +8,32 @@ import { createSlice } from '@reduxjs/toolkit';
 /**
  * Contains initial state.
  */
-export const initState = {
+export const initialState = {
     /** Current search value. */
     search: '',
+    /** Current search suggestions list. */
+    suggestions: [],
 };
 
-export type THomeState = typeof initState;
+export type THomeState = typeof initialState;
 export type THomeSearch = THomeState['search'];
-export type TModifySearchText = {
-    payload: THomeSearch,
-    type: string,
-};
-
+export type THomeSuggestions = THomeState['suggestions'];
+export type TSetSearchTextAction = PayloadAction<THomeSearch>;
+export type TSetSuggestionsAction = PayloadAction<THomeSuggestions>;
 
 export const homeSlice = createSlice({
-    initialState: initState,
+    initialState,
     name: 'state/homeSlice',
     reducers: {
-        setSearchText(state: THomeState, action: PayloadAction<THomeSearch>) {
+        setSearchText(state: THomeState, action: TSetSearchTextAction) {
             state.search = action.payload;
+        },
+        setSuggestions(state: THomeState, action: TSetSuggestionsAction) {
+            state.suggestions = action.payload;
         }
     }
 });
 
-export const { setSearchText } = homeSlice.actions;
+export const { setSearchText, setSuggestions } = homeSlice.actions;
 
 export default homeSlice.reducer;

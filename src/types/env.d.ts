@@ -1,6 +1,6 @@
 /**
- * Module contains custom application types.
- * @module types/custom
+ * Module contains environment related application types.
+ * @module types/env
  */
 
 declare module '*.svg' {
