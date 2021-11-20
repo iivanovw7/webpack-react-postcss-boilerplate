@@ -2,7 +2,7 @@
  * Module used to create combine reducers.
  * @module ui/store/combineReducers.
  */
-import type { Store, AnyAction } from '@reduxjs/toolkit';
+import type { AnyAction, Store, StoreEnhancer } from '@reduxjs/toolkit';
 import { applyMiddleware, compose, createStore } from '@reduxjs/toolkit';
 import { routerMiddleware } from 'connected-react-router';
 import type { History as AppHistory } from 'history';
@@ -11,7 +11,10 @@ import throttle from 'lodash.throttle';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 
+import type { AnyObject } from '../../types/util';
+
 import createReducer from './combineReducers';
+import rootSaga from './combineSagas';
 import { loadState, saveState } from './localStorage';
 
 /**
@@ -45,21 +48,20 @@ export default function configureStore(appHistory: AppHistory): Store<unknown, A
     // Create the store with two middlewares
     // 1. sagaMiddleware: Makes redux-sagas work
     // 2. routerMiddleware: Syncs the location/URL path to the state
-    const middlewares = [sagaMiddleware, routerMiddleware(appHistory)];
+    const middlewares = [
+        sagaMiddleware,
+        routerMiddleware(appHistory)
+    ];
 
-    const enhancers = [applyMiddleware(...middlewares)];
+    const enhancers: StoreEnhancer<{dispatch: unknown}, AnyObject>[] = [applyMiddleware(...middlewares)];
 
     const store = createStore(
         createReducer(),
-        // @ts-ignore eslint-disable-line @typescript-eslint/ban-ts-comment
         { ...persistedState },
         composeEnhancers(...enhancers)
     );
 
-    // Extensions
-    // @ts-ignore eslint-disable-line @typescript-eslint/ban-ts-comment
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    store.runSaga = sagaMiddleware.run;
+    sagaMiddleware.run(rootSaga);
 
     // Refreshing persisted state
     store.subscribe(

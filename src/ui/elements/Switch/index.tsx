@@ -9,7 +9,7 @@ import React from 'react';
 
 import { Checkbox, Container, Handle, Wrapper } from './Styled';
 
-interface ISwitchProps {
+interface SwitchProps {
     /** If switch is enabled. */
     checked: boolean;
     /**
@@ -39,7 +39,7 @@ interface ISwitchProps {
  * @return {ReactElement} React component with children.
  * @constructor
  */
-export function Switch(props: ISwitchProps): ReactElement {
+export function Switch(props: SwitchProps): ReactElement {
     const {
         onChange,
         checked,

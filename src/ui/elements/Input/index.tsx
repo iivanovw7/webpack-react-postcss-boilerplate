@@ -7,10 +7,10 @@ import React from 'react';
 
 import { StyledInput, Label, Span, InputContainer } from './Styled';
 
-export type TVariant = 'primary' | 'secondary';
-type TChangeHandler = (event: ChangeEvent<HTMLInputElement>) => void;
+export type Variant = 'primary' | 'secondary';
+type ChangeHandler = (event: ChangeEvent<HTMLInputElement>) => void;
 
-export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     /** Input children, eg search button and etc. */
     children?: ReactNode;
     /** Button is disabled. */
@@ -18,9 +18,9 @@ export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
     /** Label text. */
     label?: string;
     /** onChange event handler. */
-    onChange?: TChangeHandler;
+    onChange?: ChangeHandler;
     /** onInput event handler. */
-    onInput?: TChangeHandler;
+    onInput?: ChangeHandler;
     /** Input type [type = 'text'] */
     type?: string;
     /** Validation text. */
@@ -28,18 +28,18 @@ export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
     /** Text input value. */
     value: string;
     /** Input variant */
-    variant?: TVariant;
+    variant?: Variant;
 }
 
 /**
  * Creates text input component.
  * @name elements/Input
  * @method
- * @param {IInputProps} props - object represents component props.
+ * @param {InputProps} props - object represents component props.
  * @return {ReactElement} React component.
  * @constructor
  */
-export function Input(props: IInputProps): ReactElement {
+export function Input(props: InputProps): ReactElement {
     const {
         label,
         disabled,

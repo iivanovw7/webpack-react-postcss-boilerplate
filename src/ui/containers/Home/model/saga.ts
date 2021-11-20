@@ -3,18 +3,40 @@
  *
  * @module containers/Home/model/saga
  */
-import type { Pred } from 'ramda';
-import { anyPass, both, complement, equals, isEmpty, isNil, pipe, trim, } from 'ramda';
-import type { ForkEffect } from 'redux-saga/effects';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import type { Arity1Fn, Pred } from 'ramda';
+import {
+    always,
+    anyPass,
+    both,
+    complement,
+    defaultTo,
+    equals,
+    ifElse,
+    isEmpty,
+    isNil,
+    pipe,
+    prop,
+    trim
+} from 'ramda';
+import { isString } from 'ramda-adjunct';
+import type { CallEffect, ForkEffect } from 'redux-saga/effects';
+import { call, takeLatest } from 'typed-redux-saga';
+import type { SagaGenerator } from 'typed-redux-saga/types';
 
-import { requestSuggestions } from '../../../../service/npms/search';
-import { isString } from '../../../../utils/helpers';
+import type { RequestResult } from '../../../../service/BaseService';
+import { requestSuggestions } from '../../../../service/npms/api';
+import type { SearchSuggestion } from '../../../../service/npms/type';
 
-import type { TSetSearchTextAction } from './index';
+import type { SetSearchTextAction } from './index';
 import { initialState, setSearchText, setSuggestions } from './index';
 
-const isValid: Pred = pipe(
+const getSuggestions: Arity1Fn = ifElse(
+    isNil,
+    always(initialState.suggestions),
+    pipe(prop('result'), defaultTo(initialState.suggestions))
+);
+
+const isSearchInputValid: Pred = pipe(
     trim,
     both(
         isString,
@@ -26,17 +48,16 @@ const isValid: Pred = pipe(
     )
 );
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function *getSearchSuggestions(action: TSetSearchTextAction) {
-    try {
-        const { payload } = action;
-        const result = isValid(payload)
-            ? yield call(requestSuggestions, payload)
-            : initialState.suggestions;
+/**
+ * Fetches search suggestions.
+ * @param {Object.<{payload: string, type: string}>} action - search text action.
+ * @type {function}
+ */
+export function *getSearchSuggestions(action: SetSearchTextAction): Generator<CallEffect<void | RequestResult<SearchSuggestion[], SearchSuggestion[], unknown>>, void, unknown> {
+    const { payload: searchTerm } = action;
 
-        yield put(setSuggestions(result));
-    } catch (e: unknown) {
-        yield put({ type: 'FETCH_SUGGESTIONS_FAILED' });
+    if (isSearchInputValid(searchTerm)) {
+        setSuggestions(getSuggestions(yield *call(requestSuggestions, searchTerm)));
     }
 }
 
@@ -45,6 +66,6 @@ export function *getSearchSuggestions(action: TSetSearchTextAction) {
  * Takes last API call result.
  * @type {function}
  */
-export function *searchSuggestionsData(): Generator<ForkEffect<never>, void, unknown> {
+export function *searchSuggestionsData(): Generator<SagaGenerator<never, ForkEffect<never>>, void, unknown> {
     yield takeLatest(setSearchText, getSearchSuggestions);
 }

@@ -4,7 +4,7 @@
  */
 import styled from 'astroturf/react';
 
-type ContainerProps = {
+type StyledContainerProps = {
     checked: boolean;
     theme: boolean;
 };
@@ -22,7 +22,7 @@ export const Checkbox = styled('input').attrs({ type: 'checkbox' })`
     clip-path: inset(50%);
 `;
 
-export const Container = styled('div')<ContainerProps>`
+export const Container = styled('div')<StyledContainerProps>`
     position: absolute;
     bottom: units(4);
     left: units(30);

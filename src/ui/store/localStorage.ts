@@ -4,8 +4,8 @@
  *
  * @module ui/store/localStorage.
  */
-import { logLevelMap } from '../../config/constants';
-import Logger from '../../log';
+import { logLevelMap } from '../../log/constants';
+import Logger from '../../log/Logger';
 
 import type { RootState } from './combineReducers';
 
@@ -47,8 +47,7 @@ export const loadState = (): RootState | undefined => {
  */
 export const saveState = (state: Partial<RootState>): void => {
     try {
-        const serializedState = JSON.stringify(state);
-        localStorage.setItem('state', serializedState);
+        localStorage.setItem('state', JSON.stringify(state));
     }
     catch (err: unknown) {
         logger.send({

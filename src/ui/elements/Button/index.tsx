@@ -11,9 +11,9 @@ import type { IconType } from '../Icon/types';
 
 import { IconContainer, StyledButton, TextContainer } from './Styled';
 
-export type TVariant = 'primary' | 'secondary';
+export type Variant = 'primary' | 'secondary';
 
-export interface IButtonProps {
+export interface ButtonProps {
     /** Button children. */
     children?: ReactNode;
     /**
@@ -30,7 +30,7 @@ export interface IButtonProps {
     /** Button text string */
     text?: string;
     /** Input variant */
-    variant?: TVariant;
+    variant?: Variant;
 }
 
 /**
@@ -38,11 +38,11 @@ export interface IButtonProps {
  * @constructor
  * @name elements/Button
  * @method
- * @param {IButtonProps} props - contains component props.
+ * @param {ButtonProps} props - contains component props.
  * @param {ForwardedRef<HTMLButtonElement>} ref - contains button `ref`.
  * @return {ReactElement} React component with children.
  */
-function PlainButton(props: IButtonProps, ref: ForwardedRef<HTMLButtonElement>): ReactElement {
+function PlainButton(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>): ReactElement {
     const { children, disabled, dataId, variant = 'primary', icon, text, onClick } = props;
 
     return (

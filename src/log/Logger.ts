@@ -1,12 +1,14 @@
 /**
  * Module contains simple custom logger.
  * Contains basic implementation of application logger.
- * @module log
+ * @module log/Logger
  */
 import Config from '../config';
-import type { LogModeMap, LogLevelMap } from '../config/constants';
-import { logLevelMap, logModeMap, loggerColorMap } from '../config/constants';
 import { formatLoggerDate } from '../utils/date';
+
+import type { LogModeMap, LogLevelMap } from './constants';
+import { logLevelMap, logModeMap, loggerColorMap } from './constants';
+
 
 const { ERROR, DEBUG, SUCCESS, INFO, WARNING } = logLevelMap;
 const { LOGGER_OFF, LOGGER_DEBUG } = logModeMap;
@@ -111,7 +113,6 @@ class Logger {
             return null;
         }
 
-        // prettier-ignore
         switch (type) {
             case ERROR:
                 return Logger.sendMessage('Error', loggerColorMap.ERROR, message);

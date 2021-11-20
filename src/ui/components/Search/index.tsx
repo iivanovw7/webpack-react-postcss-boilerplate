@@ -12,7 +12,7 @@ import { Input } from '../../elements/Input';
 
 import { Wrapper } from './Styled';
 
-export interface ISearchProps {
+export interface SearchProps {
     /** Input element `id`. */
     id: string;
     /** Search field label. */
@@ -26,12 +26,12 @@ export interface ISearchProps {
 /**
  * Search input.
  *
- * @param {ISearchProps} props - represents component props.
+ * @param {SearchProps} props - represents component props.
  * @constructor
  *
  * @return {ReactElement} React component with children.
  */
-export function Search(props: ISearchProps): ReactElement {
+export function Search(props: SearchProps): ReactElement {
     const { id, label = 'Search', onSearch, onSelect } = props;
     const [searchValue, setSearchValue] = useState<string>('');
 
@@ -39,7 +39,7 @@ export function Search(props: ISearchProps): ReactElement {
      * Triggers `onSearch` with debounce.
      * @param {string} value - new input value.
      */
-    const handleSearch = useCallback<ISearchProps['onSearch']>(
+    const handleSearch = useCallback<SearchProps['onSearch']>(
         debounce((query: string) => onSearch(query), DEBOUNCE_TIMEOUT),
         [onSearch]
     );

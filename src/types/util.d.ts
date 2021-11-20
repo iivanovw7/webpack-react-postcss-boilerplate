@@ -15,3 +15,11 @@ export interface AnyObject<T = unknown> {
 export type PartialAndNullable<T> = {
     [P in keyof T]?: T[P] | null;
 };
+
+export type ObjectOrNull<T = unknown> = Nullable<AnyObject<T>>;
+export type OptionalObject<T = unknown> = Maybe<ObjectOrNull<T>>;
+
+/** Object containing promise. */
+export interface WithPromise<T = unknown> {
+    promise: Promise<T>;
+}

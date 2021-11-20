@@ -8,8 +8,8 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 
-import { logLevelMap } from '../../../config/constants';
-import Logger from '../../../log';
+import { logLevelMap } from '../../../log/constants';
+import Logger from '../../../log/Logger';
 import env from '../../../utils/env';
 import { ThemeSwitch } from '../../components/ThemeSwitch';
 import { makeSelectTheme } from '../../components/ThemeSwitch/model/selectors';

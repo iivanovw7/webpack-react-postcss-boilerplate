@@ -6,7 +6,7 @@
 import type { FC, SVGProps, ReactElement} from 'react';
 import React, { useEffect, useRef, useState } from 'react';
 
-interface IIconProps {
+interface IconProps {
     /**
      * Svg fill prop.
      * @default "currentColor"
@@ -19,17 +19,17 @@ interface IIconProps {
     path: string
 }
 
-interface ImportedIconInterface extends FC<SVGProps<SVGSVGElement>>, IIconProps {}
+interface ImportedIconInterface extends FC<SVGProps<SVGSVGElement>>, IconProps {}
 
 /**
  * Dynamically loads icon from assets.
  * @constructor
  * @name elements/Icon
  * @method
- * @param {IIconProps} props - contains component props.
+ * @param {IconProps} props - contains component props.
  * @return {Node} React component with children.
  */
-export function Icon(props: IIconProps): Nullable<ReactElement<JSX.Element>> {
+export function Icon(props: IconProps): Nullable<ReactElement<JSX.Element>> {
     const { path, fill = 'currentColor' } = props;
     const ImportedIconRef = useRef<ImportedIconInterface>();
     const [loading, setLoading] = useState(false);

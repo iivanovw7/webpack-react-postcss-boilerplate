@@ -1,3 +1,7 @@
+/**
+ * Module contains service worker.
+ * @module utils/serviceWorker
+ */
 
 // tslint:disable:no-console
 // This optional code is used to register a service worker.

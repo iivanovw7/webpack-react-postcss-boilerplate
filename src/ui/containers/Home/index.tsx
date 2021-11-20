@@ -49,7 +49,7 @@ export function Home(): ReactElement {
                 id="packages-search-input"
                 label="npm package name"
                 onSearch={ handleSearch }
-                onSelect={handleSelect}
+                onSelect={ handleSelect }
             />
         </Wrapper>
     );
