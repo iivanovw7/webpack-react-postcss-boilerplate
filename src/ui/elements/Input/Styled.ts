@@ -4,9 +4,9 @@
  */
 import styled from 'astroturf/react';
 
-import type { IInputProps } from './index';
+import type { InputProps } from './index';
 
-type TInputProps = Pick<IInputProps, 'disabled' | 'variant'>;
+type StyledInputProps = Pick<InputProps, 'disabled' | 'variant'>;
 
 export const Label = styled('label')`
     @mixin flex;
@@ -19,7 +19,7 @@ export const InputContainer = styled('div')`
     margin-top: units(8);
 `;
 
-export const StyledInput = styled('input')<TInputProps>`
+export const StyledInput = styled('input')<StyledInputProps>`
     @mixin shadows;
     @mixin transition border-color;
 

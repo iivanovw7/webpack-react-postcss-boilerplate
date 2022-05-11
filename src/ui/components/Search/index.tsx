@@ -7,33 +7,39 @@ import type { ReactElement, ChangeEvent} from 'react';
 import React, { useCallback, useState } from 'react';
 
 import { DEBOUNCE_TIMEOUT } from '../../../config/constants';
+import { Button } from '../../elements/Button';
 import { Input } from '../../elements/Input';
-import Button from '../../elements/Button';
 
 import { Wrapper } from './Styled';
 
-export interface ISearchProps {
+export interface SearchProps {
     /** Input element `id`. */
     id: string;
     /** Search field label. */
     label?: string;
     /** Function called on every search string change. */
     onSearch: (value: string) => void;
+    /** Function called when one of suggestions was selected. **/
+    onSelect: (value: string) => void;
 }
 
 /**
  * Search input.
  *
- * @param {ISearchProps} props - represents component props.
+ * @param {SearchProps} props - represents component props.
  * @constructor
  *
  * @return {ReactElement} React component with children.
  */
-export function Search(props: ISearchProps): ReactElement {
-    const { id, label = 'Search', onSearch } = props;
-    const [searchValue, setSearchValue] = useState('');
+export function Search(props: SearchProps): ReactElement {
+    const { id, label = 'Search', onSearch, onSelect } = props;
+    const [searchValue, setSearchValue] = useState<string>('');
 
-    const handleSearch = useCallback(
+    /**
+     * Triggers `onSearch` with debounce.
+     * @param {string} value - new input value.
+     */
+    const handleSearch = useCallback<SearchProps['onSearch']>(
         debounce((query: string) => onSearch(query), DEBOUNCE_TIMEOUT),
         [onSearch]
     );
@@ -51,8 +57,7 @@ export function Search(props: ISearchProps): ReactElement {
      * Handles search button click.
      */
     function handleClick(): void {
-        // eslint-disable-next-line no-console
-        console.log('SEARCH');
+        onSelect('TEST');
     }
 
     return (

@@ -5,32 +5,41 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
+import type { SearchSuggestion } from '../../../../service/npms/type';
+
+export type HomeState = {
+    search: string;
+    suggestions: Array<SearchSuggestion>;
+};
+
+export type HomeSearch = HomeState['search'];
+export type HomeSuggestions = HomeState['suggestions'];
+export type SetSearchTextAction = PayloadAction<HomeSearch>;
+export type SetSuggestionsAction = PayloadAction<HomeSuggestions>;
+
 /**
  * Contains initial state.
  */
-export const initState = {
+export const initialState = {
     /** Current search value. */
     search: '',
+    /** Current search suggestions list. */
+    suggestions: [],
 };
-
-export type THomeState = typeof initState;
-export type THomeSearch = THomeState['search'];
-export type TModifySearchText = {
-    payload: THomeSearch,
-    type: string,
-};
-
 
 export const homeSlice = createSlice({
-    initialState: initState,
+    initialState,
     name: 'state/homeSlice',
     reducers: {
-        setSearchText(state: THomeState, action: PayloadAction<THomeSearch>) {
+        setSearchText(state: HomeState, action: SetSearchTextAction) {
             state.search = action.payload;
+        },
+        setSuggestions(state: HomeState, action: SetSuggestionsAction) {
+            state.suggestions = action.payload;
         }
     }
 });
 
-export const { setSearchText } = homeSlice.actions;
+export const { setSearchText, setSuggestions } = homeSlice.actions;
 
 export default homeSlice.reducer;

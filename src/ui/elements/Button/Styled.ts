@@ -4,9 +4,9 @@
  */
 import styled, { css } from 'astroturf/react';
 
-import type { IButtonProps } from './index';
+import type { ButtonProps } from './index';
 
-type TButtonProps = Pick<IButtonProps, 'disabled' | 'dataId' | 'variant'> & {
+type StyledButtonProps = Pick<ButtonProps, 'disabled' | 'dataId' | 'variant'> & {
     type?: string
 };
 
@@ -16,11 +16,11 @@ export const container = css`
     flex-direction: row;
 `;
 
-export const StyledButton = styled('button').attrs((props: TButtonProps) => {
+export const StyledButton = styled('button').attrs((props: StyledButtonProps) => {
     const { dataId, type = 'button', ...restProps } = props;
 
     return { 'data-id': props.dataId, type, ...restProps };
-})<TButtonProps>`
+})<StyledButtonProps>`
     @mixin transition;
 
     composes: ${container};

@@ -19,10 +19,6 @@ export const initState = {
 
 export type ThemeProviderState = typeof initState;
 export type Theme = ThemeProviderState['theme'];
-export type ChangeTheme = {
-    type: string,
-    payload: Theme
-};
 
 /**
  *  Combines functions of createAction and createReducer of application.
@@ -30,8 +26,8 @@ export type ChangeTheme = {
  *     application state slice with state reduces.
  */
 const themeProvider = createSlice({
-    name: 'pw/themeProvider',
     initialState: initState,
+    name: 'pw/themeProvider',
     reducers: {
         changeTheme(state, action: PayloadAction<Theme>): void {
             state.theme = action.payload;

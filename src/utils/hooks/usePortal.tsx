@@ -1,3 +1,8 @@
+/**
+ * Module contains usePortal hook logic.
+ * @module utils/hooks/usePortal
+ */
+
 import { useEffect, useRef } from 'react';
 
 /**

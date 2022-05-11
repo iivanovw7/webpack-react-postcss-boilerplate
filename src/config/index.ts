@@ -3,7 +3,7 @@
  * @module config
  */
 
-import { logModeMap } from './constants';
+import { logModeMap } from '../log/constants';
 
 export type RunningMode = 'test' | 'production' | 'development';
 

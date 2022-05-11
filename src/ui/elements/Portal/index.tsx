@@ -7,7 +7,7 @@ import { createPortal} from 'react-dom';
 
 import usePortal from '../../../utils/hooks/usePortal';
 
-export interface IPortalParams {
+export interface PortalParams {
     /** Portal `children`, eg search button and etc. */
     children: ReactNode;
     /** Portal `id`. */
@@ -16,7 +16,7 @@ export interface IPortalParams {
 
 /**
  * Creates react portal with children.
- * @param {IPortalParams} params - object represents parameters.
+ * @param {PortalParams} params - object represents parameters.
  * @return {ReactPortal} react portal.
  *
  * @example
@@ -24,7 +24,7 @@ export interface IPortalParams {
  *    <p>Thinking with portals</p>
  *  </Portal>
  */
-export const Portal = (params: IPortalParams): ReactPortal => {
+export const Portal = (params: PortalParams): ReactPortal => {
     const { id, children } = params;
     const target = usePortal(id);
 
